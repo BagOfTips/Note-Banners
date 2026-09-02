@@ -8,7 +8,7 @@ Uses an image from note frontmatter as a banner behind Obsidian's inline title. 
 
 ## Frontmatter
 
-The default property is `art`:
+The default property used for banners is `art`:
 
 ```yaml
 ---
