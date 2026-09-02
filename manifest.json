@@ -1,0 +1,9 @@
+{
+  "id": "note-banners",
+  "name": "Note Banners",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Display a frontmatter image behind the inline title as a seamless note banner.",
+  "author": "Bag of Tips",
+  "isDesktopOnly": false
+}

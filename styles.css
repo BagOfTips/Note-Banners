@@ -1,0 +1,131 @@
+/* @settings
+
+name: Note Banners
+id: note-banners
+settings:
+  -
+    id: note-banner-activation-property
+    title: Activation property
+    description: Frontmatter property to inspect. Leave blank to allow banners on every note.
+    type: variable-text
+    default: ''
+  -
+    id: note-banner-activation-value
+    title: Activation value
+    description: Value the activation property must contain. Leave blank to require only that the property exists.
+    type: variable-text
+    default: ''
+  -
+    id: note-banner-property
+    title: Image property
+    description: Frontmatter property containing an image wikilink, Markdown link, or URL.
+    type: variable-text
+    default: art
+  -
+    id: note-banner-height
+    title: Banner height
+    type: variable-number-slider
+    default: 220
+    min: 100
+    max: 500
+    step: 10
+    format: px
+  -
+    id: note-banner-fade-start
+    title: Fade starting point
+    type: variable-number-slider
+    default: 48
+    min: 0
+    max: 90
+    step: 1
+    format: '%'
+
+*/
+
+body {
+  --note-banner-activation-property: "";
+  --note-banner-activation-value: "";
+  --note-banner-property: art;
+  --note-banner-height: 220px;
+  --note-banner-fade-start: 48%;
+}
+
+/* Remove the normal top gap so the artwork begins at the top edge. */
+.view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer, .cm-scroller) {
+  padding-top: 0 !important;
+}
+
+/* Use the full scrollable view width, even with readable line length enabled. */
+.view-content.note-banner-active :is(.markdown-preview-view, .cm-scroller) {
+  container-type: inline-size;
+}
+
+.view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer) {
+  position: relative;
+}
+
+.view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer)::before {
+  background-color: var(--background-primary);
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent var(--note-banner-fade-start),
+      var(--background-primary) 100%
+    ),
+    var(--note-banner-image);
+  background-position:
+    center top,
+    center calc((100% - var(--note-banner-position, 0%)) / 2);
+  background-repeat: no-repeat;
+  background-size: 100% 100%, cover;
+  content: "";
+  height: var(--note-banner-height);
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100cqw;
+  z-index: 0;
+}
+
+/* Reserve the banner area while keeping the inline title above the artwork. */
+.view-content.note-banner-active .inline-title {
+  align-items: flex-end;
+  background: transparent;
+  box-sizing: border-box;
+  color: var(--inline-title-color, #f4f4f4);
+  display: flex;
+  font-size: var(--inline-title-size, 42px);
+  height: var(--note-banner-height);
+  margin-block: 0;
+  max-width: none;
+  min-height: var(--note-banner-height);
+  padding:
+    0
+    var(--inline-title-side-padding, 42px)
+    var(--inline-title-bottom-padding, 46px);
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Let the banner span the note width even when readable line length is enabled. */
+.view-content.note-banner-active .markdown-preview-sizer > .inline-title,
+.view-content.note-banner-active .cm-sizer > .inline-title {
+  margin-inline: 0;
+}
+
+@media (max-width: 600px) {
+  .view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer)::before {
+    height: min(var(--note-banner-height), 170px);
+  }
+
+  .view-content.note-banner-active .inline-title {
+    font-size: min(var(--inline-title-size, 42px), 34px);
+    height: min(var(--note-banner-height), 170px);
+    min-height: min(var(--note-banner-height), 170px);
+    padding-inline: min(var(--inline-title-side-padding, 42px), 24px);
+  }
+}
