@@ -25,4 +25,4 @@ Leave **Activation property** blank to allow banners on every note. Leave only *
 
 External URLs and Markdown image links are also supported. The first string is used when the property is a list. Notes without a valid image do not receive banner styling.
 
-The inline title must be enabled in Obsidian for the banner and title overlay to appear.
+The banner works with inline titles enabled or disabled. When enabled, the title overlays the banner; when disabled, the banner keeps its own space above the note content.

@@ -50,9 +50,17 @@ body {
   --note-banner-fade-start: 48%;
 }
 
-/* Remove the normal top gap so the artwork begins at the top edge. */
-.view-content.note-banner-active.note-banner-active :is(.markdown-preview-sizer, .cm-sizer, .cm-scroller) {
+/* Reserve the artwork's space independently of the optional inline title. */
+.view-content.note-banner-active {
+  --note-banner-rendered-height: var(--note-banner-height);
+}
+
+.view-content.note-banner-active.note-banner-active .cm-scroller {
   padding-top: 0;
+}
+
+.view-content.note-banner-active.note-banner-active :is(.markdown-preview-sizer, .cm-sizer) {
+  padding-top: var(--note-banner-rendered-height);
 }
 
 /* Use the full scrollable view width, even with readable line length enabled. */
@@ -80,7 +88,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%, cover;
   content: "";
-  height: var(--note-banner-height);
+  height: var(--note-banner-rendered-height);
   left: 50%;
   pointer-events: none;
   position: absolute;
@@ -90,7 +98,7 @@ body {
   z-index: 0;
 }
 
-/* Reserve the banner area while keeping the inline title above the artwork. */
+/* Pull a visible title into the reserved area without adding a second gap. */
 .view-content.note-banner-active .inline-title {
   align-items: flex-end;
   background: transparent;
@@ -98,10 +106,10 @@ body {
   color: var(--inline-title-color, #f4f4f4);
   display: flex;
   font-size: var(--inline-title-size, 42px);
-  height: var(--note-banner-height);
-  margin-block: 0;
+  height: var(--note-banner-rendered-height);
+  margin-block: calc(-1 * var(--note-banner-rendered-height)) 0;
   max-width: none;
-  min-height: var(--note-banner-height);
+  min-height: var(--note-banner-rendered-height);
   padding:
     0
     var(--inline-title-side-padding, 42px)
@@ -118,14 +126,12 @@ body {
 }
 
 @media (max-width: 600px) {
-  .view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer)::before {
-    height: min(var(--note-banner-height), 170px);
+  .view-content.note-banner-active {
+    --note-banner-rendered-height: min(var(--note-banner-height), 170px);
   }
 
   .view-content.note-banner-active .inline-title {
     font-size: min(var(--inline-title-size, 42px), 34px);
-    height: min(var(--note-banner-height), 170px);
-    min-height: min(var(--note-banner-height), 170px);
     padding-inline: min(var(--inline-title-side-padding, 42px), 24px);
   }
 }
