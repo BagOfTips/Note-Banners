@@ -51,8 +51,8 @@ body {
 }
 
 /* Remove the normal top gap so the artwork begins at the top edge. */
-.view-content.note-banner-active :is(.markdown-preview-sizer, .cm-sizer, .cm-scroller) {
-  padding-top: 0 !important;
+.view-content.note-banner-active.note-banner-active :is(.markdown-preview-sizer, .cm-sizer, .cm-scroller) {
+  padding-top: 0;
 }
 
 /* Use the full scrollable view width, even with readable line length enabled. */
