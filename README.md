@@ -6,10 +6,6 @@ Uses an image from note frontmatter as a banner behind Obsidian's inline title. 
 
 [![Note Banners example](https://i.ibb.co/TMNWbD3t/image.png)](https://ibb.co/B2YnrHMB)
 
-## Install
-
-Copy this folder to `.obsidian/plugins/note-banners`, reload Obsidian, and enable **Note Banners** under Community plugins. Install **Style Settings** to configure it under **Note Banners**.
-
 ## Frontmatter
 
 The default property is `art`:
@@ -18,8 +14,6 @@ The default property is `art`:
 ---
 art: "[[Attachments/feldon.jpg]]"
 banner-pos: 0
-tags:
-  - art
 ---
 ```
 
