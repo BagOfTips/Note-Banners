@@ -10,14 +10,14 @@ Uses an image from note frontmatter as a banner behind Obsidian's inline title. 
 
 ### Community plugins
 
-Install **Note Banner** from Obsidian's Community plugins browser.
+Install **Note Banners** from Obsidian's Community plugins browser.
 
 ### Manual installation
 
-1. Create `.obsidian/plugins/note-banner` inside your vault.
+1. Create `.obsidian/plugins/note-banners` inside your vault.
 2. Copy `main.js`, `manifest.json`, and `styles.css` into that folder.
 3. Reload Obsidian.
-4. Enable **Note Banner** under **Settings > Community plugins**.
+4. Enable **Note Banners** under **Settings > Community plugins**.
 
 ## Frontmatter
 
