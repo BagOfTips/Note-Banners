@@ -25,10 +25,8 @@ The default property is `art`:
 
 ```yaml
 ---
-art: "[[Attachments/feldon.jpg]]"
 banner-pos: 0
-tags:
-  - art
+art: "[[Attachments/feldon.jpg]]"
 ---
 ```
 
