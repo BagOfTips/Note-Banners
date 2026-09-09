@@ -47,7 +47,8 @@
   z-index: 0;
 }
 
-.view-content.note-banner-active .inline-title:not(.markdown-embed *) {
+body.show-inline-title
+  .view-content.note-banner-active .inline-title:not(.markdown-embed *) {
   align-items: flex-end;
   background: transparent;
   box-sizing: border-box;
@@ -79,8 +80,15 @@
   position: relative;
 }
 
+/* Let bannerless embed titles use the same typography as normal inline titles. */
+body.show-inline-title
+  .markdown-embed:not(.note-banners-hide-embed-title)
+  > .markdown-embed-title.inline-title {
+  display: block;
+}
+
 /* Turn Obsidian's compact embed label into the banner's inline title. */
-.markdown-embed.note-banner-embed-active
+body.show-inline-title .markdown-embed.note-banner-embed-active
   > .markdown-embed-title.note-banner-embed-inline-title {
   align-items: flex-end;
   background: transparent;
@@ -101,9 +109,10 @@
 
 /* Keep the disabled state stronger than the banner-title presentation. */
 body.note-banners-hide-all-embed-titles
-  .markdown-embed.note-banner-embed-active > .markdown-embed-title,
+  .markdown-embed.note-banner-embed-active
+  > .markdown-embed-title.note-banner-embed-inline-title,
 .markdown-embed.note-banner-embed-active.note-banners-hide-embed-title
-  > .markdown-embed-title,
+  > .markdown-embed-title.note-banner-embed-inline-title,
 .note-banners-hide-all-embed-titles .markdown-embed-title,
 .markdown-embed.note-banners-hide-embed-title .markdown-embed-title,
 .note-banners-hide-all-embed-titles .markdown-embed-content .inline-title,
@@ -145,7 +154,8 @@ body.note-banners-hide-all-embed-titles
     --note-banner-rendered-height: min(var(--note-banner-height, 220px), 170px);
   }
 
-  .view-content.note-banner-active .inline-title:not(.markdown-embed *) {
+  body.show-inline-title
+    .view-content.note-banner-active .inline-title:not(.markdown-embed *) {
     font-size: min(var(--inline-title-size, 42px), 34px);
     padding-inline: min(var(--inline-title-side-padding, 42px), 24px);
   }

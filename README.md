@@ -33,7 +33,7 @@ art: "[[Attachments/feldon.jpg]]"
 ## Embedded notes
 
 Embedded banners and embed titles are both disabled by default. Enable either one under **Settings > Community plugins > Note Banners**.
-When both are enabled, the embedded note's title is displayed as a full inline title over its banner and follows compatible inline-title styling.
+When enabled, an embedded title follows compatible inline-title styling even when the embedded note has no banner. If both options are enabled and a banner is available, the title is displayed over the banner.
 
 When they are enabled globally, use an embed alias to hide one for a particular embed:
 
@@ -77,4 +77,4 @@ The main note banner works with Obsidian's inline titles enabled or disabled. Wh
 ### Embedded notes
 
 - **Show banners in embeds:** Disabled by default.
-- **Show inline titles in embeds:** Disabled by default.
+- **Show inline titles in embeds:** Disabled by default. Obsidian's native **Show inline title** option must also be enabled.

@@ -89,8 +89,10 @@ module.exports = class NoteBannersPlugin extends Plugin {
     const aliases = this.getEmbedAliases(embed);
     const hideTitle = !this.settings.embeddedTitlesEnabled
       || aliases.some((alias) => NO_TITLE_ALIASES.has(alias));
+    const title = embed.querySelector(":scope > .markdown-embed-title");
 
     embed.classList.toggle("note-banners-hide-embed-title", hideTitle);
+    title?.classList.toggle("inline-title", !hideTitle);
 
     const hideBanner = !this.settings.embeddedBannersEnabled
       || aliases.some((alias) => NO_BANNER_ALIASES.has(alias));
@@ -107,8 +109,7 @@ module.exports = class NoteBannersPlugin extends Plugin {
     }
 
     embed.classList.add("note-banner-embed-active");
-    const title = embed.querySelector(":scope > .markdown-embed-title");
-    title?.classList.add("inline-title", "note-banner-embed-inline-title");
+    title?.classList.add("note-banner-embed-inline-title");
     this.setBannerProperties(embed, imageUrl, file);
   }
 
@@ -132,13 +133,14 @@ module.exports = class NoteBannersPlugin extends Plugin {
   clearEmbedBanner(embed) {
     embed.classList.remove("note-banner-embed-active");
     const title = embed.querySelector(":scope > .markdown-embed-title");
-    title?.classList.remove("inline-title", "note-banner-embed-inline-title");
+    title?.classList.remove("note-banner-embed-inline-title");
     this.clearBannerProperties(embed);
   }
 
   clearEmbed(embed) {
     this.clearEmbedBanner(embed);
     embed.classList.remove("note-banners-hide-embed-title");
+    embed.querySelector(":scope > .markdown-embed-title")?.classList.remove("inline-title");
   }
 
   clearBannerProperties(element) {
